@@ -52,7 +52,10 @@ namespace DebugServer
             if (read > 0)
             {
                 _current =  await GetDebug("");
-                // işle
+                byte[] incomeBuffer = new byte[read];
+                Array.Copy(_buffer,incomeBuffer,read);
+                string id = Encoding.Unicode.GetString(incomeBuffer);
+                // todo
                 await Update();
             }
 
