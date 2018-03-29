@@ -10,6 +10,7 @@ namespace DebugServer
     {
         public string _id { get; set; }
         public string Code { get; set; }
+        public string Language { get; set; }
         public string SuccessResult { get; set; }
         public string ErrorResult { get; set; }
         public Debug()
