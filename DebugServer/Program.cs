@@ -28,12 +28,14 @@ namespace DebugServer
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Server started..");
             _clientSockets = new List<Socket>();
             _buffer = new byte[1024];
             _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             _serverSocket.Bind(new IPEndPoint(IPAddress.Any, 1234));
             _serverSocket.Listen(10);
             _serverSocket.BeginAccept(_buffer.Length, BeginAccept, null);
+            Console.WriteLine("Server closed.");
         }
 
         private static void BeginAccept(IAsyncResult ar)
