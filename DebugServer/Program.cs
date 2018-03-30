@@ -33,7 +33,6 @@ namespace DebugServer
             _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             _serverSocket.Bind(new IPEndPoint(IPAddress.Any, 1234));
             _serverSocket.Listen(10);
-            
             _serverSocket.BeginAccept(_buffer.Length, BeginAccept, null);
         }
 
@@ -55,7 +54,7 @@ namespace DebugServer
                 Array.Copy(_buffer, incomeBuffer, read);
                 string id = Encoding.Unicode.GetString(incomeBuffer);
                 _current =  await GetDebug(id);
-                // todo
+                _current = Debugger.StartProcess(_current);
                 await Update();
             }
 
